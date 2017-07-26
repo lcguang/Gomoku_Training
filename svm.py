@@ -41,6 +41,9 @@ def trainSVM():
 ########################################################
 def predictSolution(input):
     solution = int(round(util.classifier.predict(input)[0]))
+    # TODO:
+    # Solution position may lies on the cell that has already been filled
+    # Need to fix the bug
     return solution / 15, solution % 15
 
 
