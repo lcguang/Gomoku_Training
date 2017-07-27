@@ -37,14 +37,37 @@ def trainSVM():
 
 
 ########################################################
-# predict solution from input, return position
+# Predict solution from input, return position
 ########################################################
 def predictSolution(input):
-    solution = int(round(util.classifier.predict(input)[0]))
+    input_array = [int(i) for i in input.split()]
+    solution = int(round(util.classifier.predict(input_array)[0]))
     # TODO:
     # Solution position may lies on the cell that has already been filled
     # Need to fix the bug
     return solution / 15, solution % 15
+
+
+########################################################
+# Functionality test for predictions
+########################################################
+def testPrediction():
+    testing = "-1 -1 -1 -1 -1 -1 -1 -1 -1 0 -1 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 -1 -1 -1 -1 1 -1 -1 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 -1 0 -1 1 -1 -1 -1 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 -1 -1 1 -1 0 -1 -1 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 0 1 1 1 1 0 -1 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 0 -1 -1 -1 1 -1 0 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 -1 -1 -1 0 1 1 -1 0 -1 -1 -1 " \
+              "-1 -1 -1 -1 -1 -1 0 0 1 -1 0 -1 1 -1 -1 " \
+              "-1 -1 -1 -1 -1 -1 0 1 0 -1 -1 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 -1 -1 1 -1 -1 -1 -1 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 -1 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 " \
+              "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1"
+    print predictSolution(testing)
 
 
 def main():
@@ -52,8 +75,8 @@ def main():
     readTrainingData("data/training_example.txt")
     trainSVM()
 
-    testing = [-1, -1, -1, -1, 0, 1, -1, -1, -1]
-    print predictSolution(testing)
+    testPrediction()
+
 
 if __name__ == "__main__":
     main()
